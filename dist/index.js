@@ -1,24 +1,12 @@
 "use strict";
-var Sorter = /** @class */ (function () {
-    function Sorter(collection) {
-        this.collection = collection;
-    }
-    Sorter.prototype.sort = function () {
-        var _a;
-        var length = this.collection.length;
-        for (var i = 0; i < length; i++) {
-            for (var j = 0; j < length - i - 1; j++) {
-                if (this.collection[j] > this.collection[j + 1]) {
-                    _a = [
-                        this.collection[j + 1],
-                        this.collection[j],
-                    ], this.collection[j] = _a[0], this.collection[j + 1] = _a[1];
-                }
-            }
-        }
-    };
-    return Sorter;
-}());
-var sorter = new Sorter([10, -3, -5, 3, 0]);
-sorter.sort();
-console.log(sorter.collection);
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var Sorter_1 = __importDefault(require("./Sorter"));
+var NumbersCollection_1 = __importDefault(require("./collections/NumbersCollection"));
+var numbers = [10, -3, -5, 3, 0];
+var numbersCollection = new NumbersCollection_1.default(numbers);
+var numbersSorter = new Sorter_1.default(numbersCollection);
+numbersSorter.sort();
+console.log(numbersSorter.collection);
