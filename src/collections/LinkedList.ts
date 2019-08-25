@@ -1,13 +1,17 @@
+import Sorter from "./shared/Sorter";
+
+type WalkoverAddFn = (data: number) => void;
+
 class Node {
   next: Node | null = null;
 
   constructor(public data: number) {}
 }
 
-class LinkedList {
+class LinkedList extends Sorter {
   head: Node | null = null;
 
-  add(data: number): void {
+  private add(data: number): void {
     const node = new Node(data);
 
     if (!this.head) {
@@ -22,6 +26,13 @@ class LinkedList {
     }
 
     tail.next = node;
+  }
+
+  addSet(dataSet: number[]): void {
+    const walkoverAddFn: WalkoverAddFn = (data: number) => {
+      this.add(data);
+    };
+    dataSet.forEach(walkoverAddFn);
   }
 
   get length(): number {

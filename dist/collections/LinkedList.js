@@ -1,5 +1,22 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+var Sorter_1 = __importDefault(require("./shared/Sorter"));
 var Node = /** @class */ (function () {
     function Node(data) {
         this.data = data;
@@ -7,9 +24,12 @@ var Node = /** @class */ (function () {
     }
     return Node;
 }());
-var LinkedList = /** @class */ (function () {
+var LinkedList = /** @class */ (function (_super) {
+    __extends(LinkedList, _super);
     function LinkedList() {
-        this.head = null;
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.head = null;
+        return _this;
     }
     LinkedList.prototype.add = function (data) {
         var node = new Node(data);
@@ -22,6 +42,13 @@ var LinkedList = /** @class */ (function () {
             tail = tail.next;
         }
         tail.next = node;
+    };
+    LinkedList.prototype.addSet = function (dataSet) {
+        var _this = this;
+        var walkoverAddFn = function (data) {
+            _this.add(data);
+        };
+        dataSet.forEach(walkoverAddFn);
     };
     Object.defineProperty(LinkedList.prototype, "length", {
         get: function () {
@@ -76,5 +103,5 @@ var LinkedList = /** @class */ (function () {
         }
     };
     return LinkedList;
-}());
+}(Sorter_1.default));
 exports.default = LinkedList;
